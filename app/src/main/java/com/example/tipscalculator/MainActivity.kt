@@ -1,15 +1,12 @@
 package com.example.tipscalculator
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tipscalculator.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
-import java.security.KeyStore.TrustedCertificateEntry
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,12 +14,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val view = binding.root
+        setContentView(view)
 
         var percentage: Int = 0
 
         binding.Option1.setOnCheckedChangeListener { _, isChecked ->
-            println("Naldo Option one:$isChecked")
+            println("Naldo Option three:$isChecked")
             if (isChecked) {
                 percentage = 10
             }
@@ -78,18 +76,19 @@ class MainActivity : AppCompatActivity() {
                     .make(binding.TieTotal, "Fill in the blank space", Snackbar.LENGTH_LONG)
                     .show()
             } else  {
-                val TotalTable: Float = binding.TieTotal.toString().toFloat()
+                val TotalTable: Float = binding.TieTotal.text.toString().toFloat()
                 val nPeople: Int = numOfPeopleSelected
 
                 val Totalwithouttips = TotalTable / nPeople
                 val Tips = Totalwithouttips * percentage / 100
                 val TotalwithTips = Totalwithouttips + Tips
-                println("Naldo1 " + TotalwithTips)
-                    }
+                binding.tvresult.text = "Total with tips: $TotalwithTips"
+                }
             }
 
         binding.btnClean.setOnClickListener {
             binding.TieTotal.setText("")
+            binding.tvresult.text = ""
             binding.Option1.isChecked = false
             binding.Option2.isChecked = false
             binding.Option3.isChecked = false
