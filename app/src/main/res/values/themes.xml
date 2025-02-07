@@ -5,5 +5,11 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="Title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
     <style name="Theme.TipsCalculator" parent="Base.Theme.TipsCalculator" />
 </resources>
